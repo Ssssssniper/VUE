@@ -15,7 +15,7 @@
           </el-dropdown-menu>
         </el-dropdown>-->
         <img src="../assets/name_2.png" />
-        <span>信息平台</span>
+        <span>道岔综合信息平台</span>
         <!-- 用户登录信息 -->
         <el-dropdown style="right:160px; position:absolute">
           <span class="el-dropdown-link el-icon--right" style="color:white ">
@@ -48,18 +48,19 @@
             <el-submenu :index="item.id +''" v-for="item in menuList" :key="item.id">
               <template slot="title">
                 <i :class="iconsObject[item.id]"></i>
-                {{item.title}}
+                <span>{{item.title}}</span>
               </template>
               <!-- 二级菜单 -->
               <el-menu-item-group>
-                <template slot="title">子菜单</template>
+                <!-- <template slot="title">子菜单</template> -->
                 <el-menu-item
+                  class="submenu"
                   :index="list.path +''"
                   v-for="list in item.sList"
                   :key="list.id"
                   @click="saveState(list.path)"
                 >
-                  <i :class="iconsObject[list.id]"></i>
+                  <i class="el-icon-caret-right"></i>
                   {{list.title}}
                 </el-menu-item>
               </el-menu-item-group>
@@ -145,9 +146,8 @@ export default {
       // 向后台请求菜单数据
       const { data: menulist } = await this.$http.get('/menu')
       console.log(menulist)
-      if (menulist.status != 'success')
-        return this.$message.error('获取菜单失败')
-      this.menuList = menulist.data
+      if (menulist.code != '200') return this.$message.error('获取菜单失败')
+      this.menuList = menulist.extend.data
     },
     collapseBtn() {
       this.isCollapse = !this.isCollapse
@@ -185,7 +185,11 @@ export default {
   text-align: center;
 }
 .menu {
-  border-right: none;
+  border-right: left;
+  text-align: left;
+}
+.submenu {
+  text-align: center;
 }
 .el-main {
   width: 100%;

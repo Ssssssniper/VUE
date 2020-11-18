@@ -70,9 +70,9 @@ export default {
         if (!valid) return
         const { data: res } = await this.$http.post('/login', this.loginForm)
         // console.log(res);
-        console.log(res.status)
+        console.log(res.code)
         // 后台返回数据成功
-        if (res.status == 'success') {
+        if (res.code == '200') {
           // 跳转
           this.$message({
             message: '登录成功!',

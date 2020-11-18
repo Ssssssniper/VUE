@@ -7,6 +7,7 @@ import Employee from '../components/admin/Employee.vue'
 import AdminRule from '../components/admin/AdminRule.vue'
 import Upload from '../components/admin/Upload.vue'
 import Display from '../components/admin/Display.vue'
+import Inbound from '@/components/IOmanger/Inbound'
 
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
@@ -53,6 +54,9 @@ const routes = [
         }, {
             path: "/display",
             component: Display,
+        }, {
+            path: "/inbound",
+            component: Inbound
         }]
     },
 

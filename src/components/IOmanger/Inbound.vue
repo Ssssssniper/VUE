@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>用户信息页面</h3>
+    <h3>入库页面</h3>
     <!-- <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>
@@ -8,7 +8,7 @@
       </el-breadcrumb-item>
       <el-breadcrumb-item>信息列表</el-breadcrumb-item>
     </el-breadcrumb>-->
-    <el-page-header @back="goBack" content="信息列表"></el-page-header>
+    <el-page-header @back="goBack" content="入库信息"></el-page-header>
 
     <!-- <el-table :data="tableData">
       <el-table-column prop="name" label="姓名" width="100"></el-table-column>
@@ -18,31 +18,49 @@
       <el-table-column prop="tel" label="联系电话" width="180"></el-table-column>
       <el-table-column prop="depart" label="部门信息" width="180"></el-table-column>
     </el-table>-->
-    <!-- 用户列表主体    使用卡片容器进行展示-->
+    <!-- 入库信息主体    使用卡片容器进行展示-->
     <el-card>
       <!-- 搜索区域 -->
-      <el-row :gutter="20">
-        <el-col :span="4">
-          <el-input v-model="name_input" placeholder="请输入用户名" clearable></el-input>
+      <el-row :gutter="1" align="middle" type>
+        <el-col :xs="1" :sm="1" :md="1" :lg="1" :xl="1">
+          <span>采购人：</span>
         </el-col>
-        <el-col :span="4">
-          <el-select v-model="value" placeholder="请选择">
-            <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            ></el-option>
-          </el-select>
+        <el-col :xs="2" :sm="2" :md="2" :lg="2" :xl="2">
+          <el-input></el-input>
         </el-col>
 
-        <el-button icon="el-icon-search" @click="search"></el-button>
+        <el-col :xs="1" :sm="1" :md="1" :lg="1" :xl="1">
+          <span>名称：</span>
+        </el-col>
+        <el-col :xs="2" :sm="2" :md="2" :lg="2" :xl="2">
+          <el-input></el-input>
+        </el-col>
+        <el-col :xs="1" :sm="1" :md="1" :lg="1" :xl="1">
+          <span>单价：</span>
+        </el-col>
+        <el-col :xs="2" :sm="2" :md="2" :lg="2" :xl="2">
+          <el-input></el-input>
+        </el-col>
+        <el-col :xs="1" :sm="1" :md="1" :lg="1" :xl="1">
+          <span>数量：</span>
+        </el-col>
+        <el-col :xs="2" :sm="2" :md="2" :lg="2" :xl="2">
+          <el-input></el-input>
+        </el-col>
+        <el-col :xs="1" :sm="1" :md="1" :lg="1" :xl="1">
+          <span>金额：</span>
+        </el-col>
+        <el-col :xs="2" :sm="2" :md="2" :lg="2" :xl="2">
+          <el-input></el-input>
+        </el-col>
 
-        <!-- <el-col :span="6">
-          <el-button @click="add">添加人员</el-button>
-        </el-col>-->
+        <el-col :xs="3" :sm="6" :md="4" :lg="3" :xl="1">
+          <span class="bank1"></span>
+          <el-button type="primary" @click="InBound">入库</el-button>
+        </el-col>
       </el-row>
     </el-card>
+
     <el-table
       :data="tableData.list"
       border
@@ -92,7 +110,7 @@ export default {
   },
   // onload加载事件
   created() {
-    this.getEmployeeList()
+    // this.getEmployeeList()
   },
   //普通方法
   methods: {
